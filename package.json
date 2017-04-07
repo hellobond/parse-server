@@ -83,9 +83,5 @@
   },
   "bin": {
     "parse-server": "./bin/parse-server"
-  },
-  "optionalDependencies": {
-    "bcrypt": "1.0.2",
-    "uws": "^0.14.0"
   }
 }
