@@ -94,7 +94,6 @@ export class FunctionsRouter extends PromiseRouter {
         reject(new Parse.Error(code, message));
       },
       errors: function(code, errors) {
-        console.error('customParseFunctionErrors', code, errors);
         reject({ customParseFunctionErrors: true, code, errors });
       },
       message: message
