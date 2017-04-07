@@ -70,8 +70,7 @@
     "dev": "npm run build && node bin/dev",
     "build": "./node_modules/.bin/babel src/ -d lib/ --copy-files",
     "start": "node ./bin/parse-server",
-    "prepublish": "npm run build",
-    "postinstall": "npm run build"
+    "prepublish": "npm run build"
   },
   "engines": {
     "node": ">=4.6"
