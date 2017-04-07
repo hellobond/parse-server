@@ -137,10 +137,8 @@ export class FunctionsRouter extends PromiseRouter {
                 params,
                 user: userString,
               });
-            console.log('functions router success', result);
             resolve(result);
           } catch (e) {
-            console.log('functions router reject', e);
             reject(e);
           }
         }, (error) => {
@@ -154,10 +152,8 @@ export class FunctionsRouter extends PromiseRouter {
                 user: userString
               });
 
-            console.log('functions router response error 2', error);
             reject(error);
           } catch (e) {
-            console.log('functions router response error 2 reject', e);
             reject(e);
           }
         });
