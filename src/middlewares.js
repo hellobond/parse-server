@@ -250,10 +250,10 @@ export function handleParseErrors(err, req, res, next) {
     res.status(httpStatus);
     res.json({ code: err.code, error: err.message });
     log.error(err.message, err);
-  } else if (err.status && err.message) {
-    res.status(err.status);
-    res.json({ error: err.message });
-    next(err);
+  } else if (err.customParseFunctionErrors) {
+    res.status(err.code);
+    res.json({ code: err.code, errors: err.errors });
+    log.error(err.errors, err);
   } else {
     log.error('Uncaught internal server error.', err, err.stack);
     res.status(500);
