@@ -251,6 +251,7 @@ export function handleParseErrors(err, req, res, next) {
     res.json({ code: err.code, error: err.message });
     log.error(err.message, err);
   } else if (err.customParseFunctionErrors) {
+    console.error('customParseFunctionErrors middleware', err);
     res.status(err.code);
     res.json({ code: err.code, errors: err.errors });
     log.error(err.errors, err);
