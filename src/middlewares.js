@@ -233,7 +233,11 @@ export function allowMethodOverride(req, res, next) {
 }
 
 export function handleParseErrors(err, req, res, next) {
-  if (err instanceof Parse.Error) {
+  if (err.customParseFunctionErrors) {
+    res.status(400);
+    res.json({ code: err.code, errors: err.errors });
+    log.error(err.errors, err);
+  } else if (err instanceof Parse.Error) {
     let httpStatus;
     // TODO: fill out this mapping
     switch (err.code) {
@@ -250,10 +254,6 @@ export function handleParseErrors(err, req, res, next) {
     res.status(httpStatus);
     res.json({ code: err.code, error: err.message });
     log.error(err.message, err);
-  } else if (err.customParseFunctionErrors) {
-    res.status(err.code);
-    res.json({ code: err.code, errors: err.errors });
-    log.error(err.errors, err);
   } else {
     log.error('Uncaught internal server error.', err, err.stack);
     res.status(500);
